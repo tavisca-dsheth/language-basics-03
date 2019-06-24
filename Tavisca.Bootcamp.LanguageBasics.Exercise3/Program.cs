@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
 {
@@ -38,9 +39,104 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
             Console.WriteLine(result);
         }
 
+        public static int FindMax(int[] arr, List<int> index)  {
+            int m = arr[index[0]];
+            if(index.Count != 1)  {
+                foreach(int x in index)  {
+                    if(arr[x] > m)  {
+                        m = arr[x];
+                    }
+                }
+            }
+            return m;
+        }
+
+        public static int FindMin(int[] arr, List<int> index)  {
+            int m = arr[index[0]];
+            if(index.Count != 1)  {
+               foreach(int x in index)  {
+                    if(arr[x] < m)  {
+                        m = arr[x];
+                    }
+                }
+            }
+            return m;
+        }
+
+        public static List<int> FindAllIndex(int[] arr, List<int> index, int elem)  {
+            List<int> l = new List<int>();
+            foreach(int x in index)  {
+                if(arr[x] == elem)  {
+                    l.Add(x);
+                }
+            }
+            return l;
+        }
+
         public static int[] SelectMeals(int[] protein, int[] carbs, int[] fat, string[] dietPlans)
         {
-            // Add your code here.
+            int[] calorie = new int[protein.Length];
+
+            for(int i=0;i<carbs.Length;i++)  {
+                calorie[i] = ((protein[i] + carbs[i]) * 5) + (fat[i] * 9);
+            }
+
+            int[] meal = new int[dietPlans.Length];
+
+            for(int i=0;i<dietPlans.Length;i++)  {
+
+                List<int> index = new List<int>(protein.Length); 
+
+                for(int j=0;j<protein.Length;j++)  {
+                    index.Add(j);
+                }
+
+                Char[] plan = dietPlans[i].ToCharArray();
+                
+                int minVal = 0, maxVal = 0;
+
+                if(plan.Length == 0)  {
+                    meal[i] = 0;
+                    continue;
+                }
+
+                for(int j=0;j<plan.Length;j++)  {
+                    switch(plan[j])  {
+                        case 'P': maxVal = FindMax(protein, index);
+                                  index = FindAllIndex(protein, index, maxVal);
+                                  break;
+                        case 'p': minVal = FindMin(protein, index);
+                                  index = FindAllIndex(protein, index, minVal);
+                                  break;
+                        case 'F': maxVal = FindMax(fat, index);
+                                  index = FindAllIndex(fat, index, maxVal);
+                                  break;
+                        case 'f': minVal = FindMin(fat, index);
+                                  index = FindAllIndex(fat, index, minVal);
+                                  break;
+                        case 'C': maxVal = FindMax(carbs, index);
+                                  index = FindAllIndex(carbs, index, maxVal);
+                                  break;
+                        case 'c': minVal = FindMin(carbs, index);
+                                  index = FindAllIndex(carbs, index, minVal);
+                                  break;
+                        case 'T': maxVal = FindMax(calorie, index);
+                                  index = FindAllIndex(calorie, index, maxVal);
+                                  break;
+                        case 't': minVal = FindMin(calorie, index);
+                                  index = FindAllIndex(calorie, index, minVal);
+                                  break;
+                    }
+		            if(index.Count == 1)  {
+                        meal[i] = index[0];
+                        break;
+                    }
+                }
+                meal[i] = index[0];
+            }
+
+            return (meal);
+            
             throw new NotImplementedException();
         }
     }
