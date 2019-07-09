@@ -39,15 +39,15 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
             Console.WriteLine(result);
         }
 
-        public static int FindMax(int[] arr, List<int> index)  {
+        public static int FindMaxFromPossibleIndexes(int[] arr, List<int> index)  {
             return index.Select(ind => arr[ind]).Max();
         }
 
-        public static int FindMin(int[] arr, List<int> index)  {
+        public static int FindMinFromPossibleIndexes(int[] arr, List<int> index)  {
             return index.Select(ind => arr[ind]).Min();
         }
 
-        public static List<int> FindAllIndex(int[] arr, List<int> index, int elem)  {
+        public static List<int> FindAllPossibleIndexes(int[] arr, List<int> index, int elem)  {
             return index.Where(ind => arr[ind] == elem).ToList();
         }
 
@@ -80,29 +80,29 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
 
                 for(int j=0;j<plan.Length;j++)  {
                     switch(plan[j])  {
-                        case 'P': maxVal = FindMax(protein, index);
-                                  index = FindAllIndex(protein, index, maxVal);
+                        case 'P': maxVal = FindMaxFromPossibleIndexes(protein, index);
+                                  index = FindAllPossibleIndexes(protein, index, maxVal);
                                   break;
-                        case 'p': minVal = FindMin(protein, index);
-                                  index = FindAllIndex(protein, index, minVal);
+                        case 'p': minVal = FindMinFromPossibleIndexes(protein, index);
+                                  index = FindAllPossibleIndexes(protein, index, minVal);
                                   break;
-                        case 'F': maxVal = FindMax(fat, index);
-                                  index = FindAllIndex(fat, index, maxVal);
+                        case 'F': maxVal = FindMaxFromPossibleIndexes(fat, index);
+                                  index = FindAllPossibleIndexes(fat, index, maxVal);
                                   break;
-                        case 'f': minVal = FindMin(fat, index);
-                                  index = FindAllIndex(fat, index, minVal);
+                        case 'f': minVal = FindMinFromPossibleIndexes(fat, index);
+                                  index = FindAllPossibleIndexes(fat, index, minVal);
                                   break;
-                        case 'C': maxVal = FindMax(carbs, index);
-                                  index = FindAllIndex(carbs, index, maxVal);
+                        case 'C': maxVal = FindMaxFromPossibleIndexes(carbs, index);
+                                  index = FindAllPossibleIndexes(carbs, index, maxVal);
                                   break;
-                        case 'c': minVal = FindMin(carbs, index);
-                                  index = FindAllIndex(carbs, index, minVal);
+                        case 'c': minVal = FindMinFromPossibleIndexes(carbs, index);
+                                  index = FindAllPossibleIndexes(carbs, index, minVal);
                                   break;
-                        case 'T': maxVal = FindMax(calorie, index);
-                                  index = FindAllIndex(calorie, index, maxVal);
+                        case 'T': maxVal = FindMaxFromPossibleIndexes(calorie, index);
+                                  index = FindAllPossibleIndexes(calorie, index, maxVal);
                                   break;
-                        case 't': minVal = FindMin(calorie, index);
-                                  index = FindAllIndex(calorie, index, minVal);
+                        case 't': minVal = FindMinFromPossibleIndexes(calorie, index);
+                                  index = FindAllPossibleIndexes(calorie, index, minVal);
                                   break;
                     }
                 }
