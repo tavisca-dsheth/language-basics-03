@@ -40,37 +40,15 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
         }
 
         public static int FindMax(int[] arr, List<int> index)  {
-            int m = arr[index[0]];
-            if(index.Count != 1)  {
-                foreach(int x in index)  {
-                    if(arr[x] > m)  {
-                        m = arr[x];
-                    }
-                }
-            }
-            return m;
+            return index.Select(ind => arr[ind]).Max();
         }
 
         public static int FindMin(int[] arr, List<int> index)  {
-            int m = arr[index[0]];
-            if(index.Count != 1)  {
-               foreach(int x in index)  {
-                    if(arr[x] < m)  {
-                        m = arr[x];
-                    }
-                }
-            }
-            return m;
+            return index.Select(ind => arr[ind]).Min();
         }
 
         public static List<int> FindAllIndex(int[] arr, List<int> index, int elem)  {
-            List<int> l = new List<int>();
-            foreach(int x in index)  {
-                if(arr[x] == elem)  {
-                    l.Add(x);
-                }
-            }
-            return l;
+            return index.Where(ind => arr[ind] == elem).ToList();
         }
 
         public static int[] SelectMeals(int[] protein, int[] carbs, int[] fat, string[] dietPlans)
@@ -91,7 +69,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                     index.Add(j);
                 }
 
-                Char[] plan = dietPlans[i].ToCharArray();
+                char[] plan = dietPlans[i].ToCharArray();
                 
                 int minVal = 0, maxVal = 0;
 
@@ -127,17 +105,11 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                                   index = FindAllIndex(calorie, index, minVal);
                                   break;
                     }
-		            if(index.Count == 1)  {
-                        meal[i] = index[0];
-                        break;
-                    }
                 }
                 meal[i] = index[0];
             }
 
             return (meal);
-            
-            throw new NotImplementedException();
         }
     }
 }
