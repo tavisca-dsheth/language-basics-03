@@ -63,10 +63,10 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
 
             for(int i=0;i<dietPlans.Length;i++)  {
 
-                List<int> indicesOfPossibleMeals = new List<int>(protein.Length); 
+                List<int> possibleMealIndices = new List<int>(protein.Length); 
 
                 for(int j=0;j<protein.Length;j++)  {
-                    indicesOfPossibleMeals.Add(j);
+                    possibleMealIndices.Add(j);
                 }
 
                 char[] plan = dietPlans[i].ToCharArray();
@@ -80,33 +80,33 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
 
                 for(int j=0;j<plan.Length;j++)  {
                     switch(plan[j])  {
-                        case 'P': maxVal = FindMaxFromPossibleIndexes(protein, indicesOfPossibleMeals);
-                                  indicesOfPossibleMeals = FindAllPossibleIndexes(protein, indicesOfPossibleMeals, maxVal);
+                        case 'P': maxVal = FindMaxFromPossibleIndexes(protein, possibleMealIndices);
+                                  possibleMealIndices = FindAllPossibleIndexes(protein, possibleMealIndices, maxVal);
                                   break;
-                        case 'p': minVal = FindMinFromPossibleIndexes(protein, indicesOfPossibleMeals);
-                                  indicesOfPossibleMeals= FindAllPossibleIndexes(protein, indicesOfPossibleMeals, minVal);
+                        case 'p': minVal = FindMinFromPossibleIndexes(protein, possibleMealIndices);
+                                  possibleMealIndices= FindAllPossibleIndexes(protein, possibleMealIndices, minVal);
                                   break;
-                        case 'F': maxVal = FindMaxFromPossibleIndexes(fat, indicesOfPossibleMeals);
-                                  indicesOfPossibleMeals= FindAllPossibleIndexes(fat, indicesOfPossibleMeals, maxVal);
+                        case 'F': maxVal = FindMaxFromPossibleIndexes(fat, possibleMealIndices);
+                                  possibleMealIndices= FindAllPossibleIndexes(fat, possibleMealIndices, maxVal);
                                   break;
-                        case 'f': minVal = FindMinFromPossibleIndexes(fat, indicesOfPossibleMeals);
-                                  indicesOfPossibleMeals= FindAllPossibleIndexes(fat, indicesOfPossibleMeals, minVal);
+                        case 'f': minVal = FindMinFromPossibleIndexes(fat, possibleMealIndices);
+                                  possibleMealIndices= FindAllPossibleIndexes(fat, possibleMealIndices, minVal);
                                   break;
-                        case 'C': maxVal = FindMaxFromPossibleIndexes(carbs, indicesOfPossibleMeals);
-                                  indicesOfPossibleMeals= FindAllPossibleIndexes(carbs, indicesOfPossibleMeals, maxVal);
+                        case 'C': maxVal = FindMaxFromPossibleIndexes(carbs, possibleMealIndices);
+                                  possibleMealIndices= FindAllPossibleIndexes(carbs, possibleMealIndices, maxVal);
                                   break;
-                        case 'c': minVal = FindMinFromPossibleIndexes(carbs, indicesOfPossibleMeals);
-                                  indicesOfPossibleMeals= FindAllPossibleIndexes(carbs, indicesOfPossibleMeals, minVal);
+                        case 'c': minVal = FindMinFromPossibleIndexes(carbs, possibleMealIndices);
+                                  possibleMealIndices= FindAllPossibleIndexes(carbs, possibleMealIndices, minVal);
                                   break;
-                        case 'T': maxVal = FindMaxFromPossibleIndexes(calorie, indicesOfPossibleMeals);
-                                  indicesOfPossibleMeals= FindAllPossibleIndexes(calorie, indicesOfPossibleMeals, maxVal);
+                        case 'T': maxVal = FindMaxFromPossibleIndexes(calorie, possibleMealIndices);
+                                  possibleMealIndices= FindAllPossibleIndexes(calorie, possibleMealIndices, maxVal);
                                   break;
-                        case 't': minVal = FindMinFromPossibleIndexes(calorie, indicesOfPossibleMeals);
-                                  indicesOfPossibleMeals= FindAllPossibleIndexes(calorie, indicesOfPossibleMeals, minVal);
+                        case 't': minVal = FindMinFromPossibleIndexes(calorie, possibleMealIndices);
+                                  possibleMealIndices= FindAllPossibleIndexes(calorie, possibleMealIndices, minVal);
                                   break;
                     }
                 }
-                meal[i] = indicesOfPossibleMeals[0];
+                meal[i] = possibleMealIndices[0];
             }
 
             return (meal);
